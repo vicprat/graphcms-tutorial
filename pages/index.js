@@ -1,18 +1,9 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
 import { PostCard, PostWidget, Categories } from "../components/index";
 
-const posts = [
-  { title: "React Testing", excerpt: "Learn react testing today" },
-  { title: "React with TailwindCss", excerpt: "Learn react testing today" },
-  {
-    title: "React Server Side Rendering",
-    excerpt: "Learn react testing today",
-  },
-];
+import { getPosts } from "../services/index";
 
-export default function Home() {
+export default function Home({ posts }) {
   return (
     <div className='container mx-auto px-10 mb-8'>
       <Head>
@@ -35,4 +26,12 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const posts = (await getPosts()) || [];
+
+  return {
+    props: { posts },
+  };
 }
