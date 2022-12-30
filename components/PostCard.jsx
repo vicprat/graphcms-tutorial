@@ -1,7 +1,6 @@
 import React from "react";
 import moment from "moment";
 import Link from "next/link";
-import postcss from "postcss";
 
 function PostCard({ post }) {
   console.log(post);
